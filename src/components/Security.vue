@@ -112,9 +112,10 @@ const goBack = () => {
     }
     span {
       font-size: 13px;
+      font-weight: 600;
     }
     p {
-      font-size: 12px;
+      font-size: 14px;
       padding: 10px 0px;
     }
   }
@@ -134,9 +135,10 @@ const goBack = () => {
     }
     span {
       font-size: 13px;
+      font-weight: 600;
     }
     p {
-      font-size: 12px;
+      font-size: 14px;
       padding: 10px 0px;
     }
   }

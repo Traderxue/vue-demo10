@@ -51,6 +51,7 @@ const changeTab = (item) =>{
   <div class="mine">
     <div class="header">
       <img src="http://127.0.0.1:5173/acatar.png" alt="" />
+      <span>用户名: 张大山</span>
       <span>ID: 108549</span>
       <span>信用分 100</span>
     </div>
