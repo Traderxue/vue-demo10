@@ -84,7 +84,7 @@ const certification = () => {
     }
   }
   .box {
-    padding: 20px 30px;
+    padding: 30px;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
