@@ -1,36 +1,50 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 const listData = ref([
     {
         logo:"http://127.0.0.1:5173/img_1.png",
-        realname:"安全中心"
+        realname:"安全中心",
+        path:"/security"
     },
     {
         logo:"http://127.0.0.1:5173/img_2.png",
-        realname:"实名认证"
+        realname:"实名认证",
+        path:"/real"
     },
     {
         logo:"http://127.0.0.1:5173/img_3.png",
-        realname:"邀请好友"
+        realname:"邀请好友",
+        path:"/invite"
     },
     {
         logo:"http://127.0.0.1:5173/img_4.png",
-        realname:"充值记录"
+        realname:"充值记录",
+        path:"/chongzhi"
     },
     {
         logo:"http://127.0.0.1:5173/img_5.png",
-        realname:"银行卡"
+        realname:"银行卡",
+        path:"/yhk"
     },
     {
         logo:"http://127.0.0.1:5173/img_6.png",
-        realname:"订单记录"
+        realname:"订单记录",
+        path:"/order"
     },
     {
         logo:"http://127.0.0.1:5173/img_7.png",
-        realname:"设置"
+        realname:"设置",
+        path:"setting"
     }
 ])
+
+const changeTab = (item) =>{
+  router.push(item.path)
+}
 </script>
 
 <template>
@@ -41,7 +55,7 @@ const listData = ref([
       <span>信用分 100</span>
     </div>
     <div class="box">
-      <div class="per" v-for="(item,index) in listData" :key="index">
+      <div class="per" v-for="(item,index) in listData" :key="index" @click="changeTab(item)">
         <div>
           <img :src="item.logo" alt="" /><span>{{item.realname}}</span>
         </div>
