@@ -1,5 +1,7 @@
 <script  setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter()
 
 const dataList = ref([
     {
@@ -52,6 +54,13 @@ const dataList = ref([
         up:0
     },
 ])
+
+const goChart = (item) =>{
+    router.push({
+        path:"/chart",
+        query:item
+    })
+}
 </script>
 
 <template>
@@ -61,7 +70,7 @@ const dataList = ref([
             <span style="text-align: center;">价格</span>
             <span style="text-align: right;">涨跌幅</span>
         </div>
-        <div class="box" v-for="(item,index) in dataList" :key="index">
+        <div class="box" v-for="(item,index) in dataList" :key="index" @click="goChart(item)">
             <div class="box_type">
                 <img :src="item.logo" alt="">
                 <span>{{item.type}}/USDT</span>

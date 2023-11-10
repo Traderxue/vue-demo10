@@ -12,6 +12,7 @@ const navList = ref([
   {
     url: "http://127.0.0.1:5173/银行卡.png",
     title: "银行卡",
+    path:'/yhk'
   },
   {
     url: "http://127.0.0.1:5173/分析.png",
@@ -20,6 +21,7 @@ const navList = ref([
   {
     url: "http://127.0.0.1:5173/钱包.png",
     title: "钱包",
+    path:"/wallet"
   },
 ]);
 
@@ -51,6 +53,10 @@ const changeTab = (item) => {
   tab_active.value = item.title;
   router.push(item.path);
 };
+
+const goNav = (item)=>{
+  router.push(item.path)
+}
 </script>
 
 <template>
@@ -90,7 +96,7 @@ const changeTab = (item) => {
       text="无论我们能活多久，我们能够享受的只有无法分割的此刻，此外别无其他。"
     />
     <div class="nav">
-      <div v-for="(item, index) in navList" :key="index">
+      <div v-for="(item, index) in navList" :key="index" @click="goNav(item)">
         <img :src="item.url" alt="" />
         <span>{{ item.title }}</span>
       </div>

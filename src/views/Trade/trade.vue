@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter()
 
 const typeList = ref([
 {
@@ -101,6 +103,13 @@ const typeList = ref([
         up:0
     },
 ])
+
+const goChart =(item) =>{
+    router.push({
+        path:"/chart",
+        query:item
+    })
+}
 </script>
 
 <template>
@@ -111,7 +120,7 @@ const typeList = ref([
         <div class="header">
             <span style="text-align: left;">交易对</span><span>最新价格</span><span style="text-align: right;">24H涨跌幅</span>
         </div>
-        <div class="box" v-for="(item,index) in typeList" :key="index">
+        <div class="box" v-for="(item,index) in typeList" :key="index" @click="goChart(item)">
             <div class="box_type">
                 <img :src="item.logo" alt="">
                 <span>{{item.type}}/USDT</span>

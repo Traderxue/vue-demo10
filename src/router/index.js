@@ -91,6 +91,10 @@ const router = createRouter({
     {
       path:"/setting",
       component:()=>import("@/components/setting.vue")
+    },
+    {
+      path:"/chart",
+      component:()=>import("@/components/chart.vue")
     }
   ]
 })
