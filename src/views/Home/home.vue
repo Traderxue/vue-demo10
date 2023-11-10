@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import i18n from "@/lang/index.js";
 
 const router = useRouter();
 
@@ -38,6 +39,18 @@ const tabs = ref([
   },
 ]);
 
+const langList = ref([
+  {
+    lang:"en"
+  },
+  {
+    lang:"zh"
+  },
+  {
+    lang:"zh_hk"
+  }
+])
+
 const menu = ref(false);
 const lang = ref(false);
 
@@ -57,6 +70,11 @@ const changeTab = (item) => {
 const goNav = (item)=>{
   router.push(item.path)
 }
+
+const changeLang = (language) =>{
+  i18n.global.locale = language
+  lang.value = false
+}
 </script>
 
 <template>
@@ -68,7 +86,7 @@ const goNav = (item)=>{
         position="left"
         :style="{ height: '100%', width: '60%' }"
       />
-      <span>HOME</span>
+      <span>{{$t('home.title')}}</span>
       <span class="material-symbols-outlined" @click="showLang">
         language
       </span>
@@ -76,7 +94,11 @@ const goNav = (item)=>{
         v-model:show="lang"
         position="top"
         :style="{ height: '30%' }"
-      />
+      >
+      <div class="lang">
+        <span v-for="(item,index) in langList" @click="changeLang(item.lang)" :key="index">{{item.lang}}</span>
+      </div>
+    </van-popup>
     </div>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item
@@ -125,6 +147,16 @@ const goNav = (item)=>{
     align-items: center;
     background: #FFF;
     padding: 10px;
+    .lang{
+      padding: 20px;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      align-items: center;
+      span{
+        padding: 10px 0px;
+      }
+    }
   }
   .my-swipe{
     margin: 20px 0px;
