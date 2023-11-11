@@ -9,6 +9,7 @@ const navList = ref([
   {
     url: "http://127.0.0.1:5173/黄金.png",
     title: "买币",
+    path:"/quickly"
   },
   {
     url: "http://127.0.0.1:5173/银行卡.png",

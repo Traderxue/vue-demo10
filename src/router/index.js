@@ -95,6 +95,28 @@ const router = createRouter({
     {
       path:"/chart",
       component:()=>import("@/components/chart.vue")
+    },
+    {
+      path:"/quickly",
+      component:()=>import("@/views/Quickly/quickly.vue"),
+      children:([
+        {
+          path:"",
+          component:()=>import("@/views/Quickly/components/buy.vue")
+        },
+        {
+          path:"/buy",
+          component:()=>import("@/views/Quickly/components/buy.vue")
+        },
+        {
+          path:"/sell",
+          component:()=>import("@/views/Quickly/components/sell.vue")
+        }
+      ])
+    },
+    {
+      path:"/generate",
+      component:()=>import("@/views/Quickly/components/generate.vue")
     }
   ]
 })
