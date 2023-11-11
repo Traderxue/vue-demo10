@@ -1,21 +1,23 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter()
 
 const navList = ref([
   {
     icon:"admin_panel_settings",
     title:"身份认证",
-    path:""
+    path:"/real"
   },
   {
     icon:"lock",
     title:"账户中心",
-    path:""
+    path:"/mine"
   },
   {
     icon:"badge",
-    title:"身份认证",
-    path:""
+    title:"邀请好友",
+    path:"/invite"
   },
   {
     icon:"support_agent",
@@ -30,12 +32,15 @@ const navList = ref([
 ])
 
 const login = () =>{
-
+  router.push("/login")
 }
 
 const register = () =>{
+  router.push("/register")  
+}
 
-  
+const goTabs = (item) =>{
+  router.push(item.path)
 }
 </script>
 
@@ -46,7 +51,7 @@ const register = () =>{
       <span>ID: 643153</span>
       <span>欢迎来到MTC</span>
     </div>
-    <div class="box" v-for="(item,index) in navList" :key="index">
+    <div class="box" v-for="(item,index) in navList" :key="index" @click="goTabs(item)">
       <div>
         <span class="material-symbols-outlined admin"> {{item.icon}} </span><span>{{item.title}}</span>
       </div>

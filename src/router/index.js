@@ -117,6 +117,14 @@ const router = createRouter({
     {
       path:"/generate",
       component:()=>import("@/views/Quickly/components/generate.vue")
+    },
+    {
+      path:"/login",
+      component:()=>import("@/views/Login/login.vue")
+    },
+    {
+      path:"/register",
+      component:()=>import("@/views/Register/register.vue")
     }
   ]
 })
