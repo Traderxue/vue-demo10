@@ -46,12 +46,15 @@ const tabs = ref([
 const langList = ref([
   {
     lang: "en",
+    title:"English"
   },
   {
     lang: "zh",
+    title:"简体中文"
   },
   {
     lang: "zh_hk",
+    title:"繁体中文"
   },
 ]);
 
@@ -104,7 +107,7 @@ const changeLang = (language) => {
             @click="changeLang(item.lang)"
             :key="index"
             :class="currentLang==item.lang?'active':''"
-            >{{ item.lang }}</span
+            >{{ item.title }}</span
           >
         </div>
       </van-popup>
