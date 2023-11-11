@@ -20,7 +20,7 @@ const titleList = ref([
 
 
 const goBack = () => {
-  router.back();
+  router.push('/home');
 };
 
 const goTabs = (item) => {

@@ -2,19 +2,22 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import i18n from "@/lang/index.js";
+import Menu from "@/components/menu.vue"
 
 const router = useRouter();
+
+const currentLang = ref("zh");
 
 const navList = ref([
   {
     url: "http://127.0.0.1:5173/黄金.png",
     title: "买币",
-    path:"/quickly"
+    path: "/quickly",
   },
   {
     url: "http://127.0.0.1:5173/银行卡.png",
     title: "银行卡",
-    path:'/yhk'
+    path: "/yhk",
   },
   {
     url: "http://127.0.0.1:5173/分析.png",
@@ -23,7 +26,7 @@ const navList = ref([
   {
     url: "http://127.0.0.1:5173/钱包.png",
     title: "钱包",
-    path:"/wallet"
+    path: "/wallet",
   },
 ]);
 
@@ -42,15 +45,15 @@ const tabs = ref([
 
 const langList = ref([
   {
-    lang:"en"
+    lang: "en",
   },
   {
-    lang:"zh"
+    lang: "zh",
   },
   {
-    lang:"zh_hk"
-  }
-])
+    lang: "zh_hk",
+  },
+]);
 
 const menu = ref(false);
 const lang = ref(false);
@@ -68,14 +71,15 @@ const changeTab = (item) => {
   router.push(item.path);
 };
 
-const goNav = (item)=>{
-  router.push(item.path)
-}
+const goNav = (item) => {
+  router.push(item.path);
+};
 
-const changeLang = (language) =>{
-  i18n.global.locale = language
-  lang.value = false
-}
+const changeLang = (language) => {
+  i18n.global.locale = language;
+  lang.value = false;
+  currentLang.value = language
+};
 </script>
 
 <template>
@@ -86,20 +90,24 @@ const changeLang = (language) =>{
         v-model:show="menu"
         position="left"
         :style="{ height: '100%', width: '60%' }"
-      />
-      <span>{{$t('home.title')}}</span>
+      >
+      <Menu/>
+    </van-popup>
+      <span>{{ $t("home.title") }}</span>
       <span class="material-symbols-outlined" @click="showLang">
         language
       </span>
-      <van-popup
-        v-model:show="lang"
-        position="top"
-        :style="{ height: '30%' }"
-      >
-      <div class="lang">
-        <span v-for="(item,index) in langList" @click="changeLang(item.lang)" :key="index">{{item.lang}}</span>
-      </div>
-    </van-popup>
+      <van-popup v-model:show="lang" position="top" :style="{ height: '30%' }">
+        <div class="lang">
+          <span
+            v-for="(item, index) in langList"
+            @click="changeLang(item.lang)"
+            :key="index"
+            :class="currentLang==item.lang?'active':''"
+            >{{ item.lang }}</span
+          >
+        </div>
+      </van-popup>
     </div>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item
@@ -141,61 +149,67 @@ const changeLang = (language) =>{
 .home {
   width: auto;
   height: auto;
-  .header{
+  .header {
     width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #FFF;
+    background: #fff;
     padding: 10px;
-    .lang{
+    .lang {
       padding: 20px;
       display: flex;
       justify-content: space-around;
       flex-direction: column;
       align-items: center;
-      span{
+      span {
+        width: 100%;
+        text-align: center;
         padding: 10px 0px;
+      }
+      .active {
+        color: #1a73ec;
+        background: #F5F5F5;
       }
     }
   }
-  .my-swipe{
+  .my-swipe {
     margin: 20px 0px;
     height: 160px;
-    img{
+    img {
       width: 100%;
       height: 160px;
       border-radius: 5px;
     }
   }
-  .nav{
+  .nav {
     display: flex;
     justify-content: space-around;
-    background: #FFF;
+    background: #fff;
     margin: 10px 0px;
     padding: 10px 0px;
     border-radius: 5px;
-    div{
+    div {
       display: flex;
       justify-content: space-around;
       flex-direction: column;
       align-items: center;
       font-weight: 500;
       font-size: 13px;
-      img{
+      img {
         width: 30px;
         height: 30px;
         padding-bottom: 5px;
       }
     }
   }
-  .tab{
+  .tab {
     display: flex;
     justify-content: space-around;
     padding: 20px 0px;
-    background: #FFF;
-    .active{
-      color: #1A73EC;
+    background: #fff;
+    .active {
+      color: #1a73ec;
     }
   }
 }
