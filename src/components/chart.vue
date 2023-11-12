@@ -5,8 +5,7 @@ import { onMounted, onUnmounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const router = useRouter();
-const route = useRoute()
-
+const route = useRoute();
 
 const buypopup = ref(false);
 const sellpopup = ref(false);
@@ -17,9 +16,9 @@ const type = ref("BTC");
 
 const currentPrice = ref("24245");
 
-const parcent = ref("+1.6%")
+const parcent = ref("+1.6%");
 
-const up = ref(1)
+const up = ref(1);
 
 const tabList = ref([
   {
@@ -65,23 +64,24 @@ const changeTab = (item) => {
   tab_btn.value = item.time;
 };
 
-const buy_sure = () =>{
-    showToast('下单成功')
-    buypopup.value = false
-}
+const buy_sure = () => {
+  showToast("下单成功");
+  buypopup.value = false;
+};
 
-const sell_btn = () =>{
-    showToast('下单成功')
-    sellpopup.value = false
-}
+const sell_btn = () => {
+  showToast("下单成功");
+  sellpopup.value = false;
+};
+
+
 
 let chart;
 onMounted(() => {
-
-type.value = route.query.type
-currentPrice.value = route.query.price
-parcent.value = route.query.parcent
-up.value = route.query.up
+  type.value = route.query.type;
+  currentPrice.value = route.query.price;
+  parcent.value = route.query.parcent;
+  up.value = route.query.up;
 
   chart = init("kline");
 
@@ -169,6 +169,8 @@ up.value = route.query.up
   ]);
 
   chart.createIndicator("VOL");
+
+  chart.setStyles("light")
 });
 
 onUnmounted(() => {
@@ -184,12 +186,12 @@ onUnmounted(() => {
         arrow_back_ios
       </span>
       <span>{{ type }}/USDT</span>
-      <span >持仓</span>
+      <span>持仓</span>
     </div>
     <div class="banner">
-      <div :class="route.query.up=='1'?'up':'down'">
+      <div :class="route.query.up == '1' ? 'up' : 'down'">
         <span>{{ currentPrice }}</span>
-        <span>{{parcent}}</span>
+        <span>{{ parcent }}</span>
       </div>
       <div>
         <span>24H最高价</span>
@@ -315,10 +317,10 @@ onUnmounted(() => {
         padding: 3px 0px;
       }
     }
-    .down{
+    .down {
       color: #e23e57;
     }
-    .up{
+    .up {
       color: #00b8a9;
     }
   }
